@@ -1,0 +1,16 @@
+build/
+gem5/build/
+m5out*/
+stats.txt
+config.ini
+config.json
+*.o
+*.out
+matrix_multiply
+__pycache__/
+*.pyc
+venv/
+.env
+.vscode/
+.idea/
+*.tmp
