@@ -1,0 +1,40 @@
+MICROARCHITECTURAL DESIGN SPACE EXPLORATION
+=======================================================
+
+Total configurations analysed: 24
+Successful automated experiments: 20
+
+BASELINE PERFORMANCE
+-----------------------------------
+Execution time: 0.001232000 s
+IPC: 2.369832
+CPI: 0.421971
+
+BEST CONFIGURATION
+-----------------------------------
+Name: Baseline
+Issue width: 8
+ROB entries: 192
+L2 cache: 256 KB
+Execution time: 0.001232000 s
+IPC: 2.369832
+CPI: 0.421971
+Speedup: 1.000000x
+Time improvement: 0.00%
+
+SLOWEST CONFIGURATION
+-----------------------------------
+Name: issue4_rob64_l2_128KB
+Execution time: 0.008751000 s
+IPC: 0.333736
+
+AVERAGE EXECUTION TIME BY ROB CAPACITY
+ROB 64: 4.445167 ms
+ROB 128: 3.014500 ms
+ROB 192: 2.498167 ms
+ROB 256: 2.491000 ms
+
+AVERAGE EXECUTION TIME BY L2 CACHE SIZE
+L2 128 KB: 5.903625 ms
+L2 256 KB: 1.672375 ms
+L2 512 KB: 1.760625 ms
