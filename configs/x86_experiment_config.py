@@ -11,21 +11,26 @@ from gem5.isas import ISA
 from gem5.resources.resource import BinaryResource
 from gem5.simulate.simulator import Simulator
 
+# Parse experiment parameters
 parser = argparse.ArgumentParser()
 
 parser.add_argument("--issue-width", type=int, default=8)
 parser.add_argument("--rob-entries", type=int, default=192)
+parser.add_argument("--l2-kb", type=int, default=256)
 
 args = parser.parse_args()
 
+# Processor
 processor = SimpleProcessor(
     cpu_type=CPUTypes.O3,
     num_cores=1,
     isa=ISA.X86,
 )
 
+# Access O3 CPU SimObject
 cpu = processor.get_cores()[0].get_simobject()
 
+# CPU parameters
 cpu.fetchWidth = 8
 cpu.decodeWidth = 8
 cpu.renameWidth = 8
@@ -35,14 +40,17 @@ cpu.wbWidth = 8
 cpu.commitWidth = 8
 cpu.numROBEntries = args.rob_entries
 
+# Cache hierarchy
 cache_hierarchy = PrivateL1PrivateL2CacheHierarchy(
     l1d_size="32KiB",
     l1i_size="32KiB",
-    l2_size="256KiB",
+    l2_size=f"{args.l2_kb}KiB",
 )
 
+# Memory
 memory = SingleChannelDDR4_2400(size="2GiB")
 
+# Board
 board = X86Board(
     clk_freq="3GHz",
     processor=processor,
@@ -50,15 +58,24 @@ board = X86Board(
     cache_hierarchy=cache_hierarchy,
 )
 
-binary = BinaryResource(local_path="workloads/matrix_multiply")
+# Workload
+binary = BinaryResource(
+    local_path="workloads/matrix_multiply"
+)
+
 board.set_se_binary_workload(binary)
 
+# Display configuration
 print("\n===== EXPERIMENTAL CONFIGURATION =====")
 print("CPU: O3CPU")
 print("Issue Width:", args.issue_width)
 print("ROB Entries:", args.rob_entries)
+print("L1 I-Cache: 32KiB")
+print("L1 D-Cache: 32KiB")
+print("L2 Cache:", f"{args.l2_kb}KiB")
 print("======================================\n")
 
+# Run simulation
 simulator = Simulator(board=board)
 simulator.run()
 

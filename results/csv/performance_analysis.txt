@@ -1,40 +1,90 @@
 MICROARCHITECTURAL DESIGN SPACE EXPLORATION
-=======================================================
+============================================================
 
+EXPERIMENT SUMMARY
+----------------------------------------
 Total configurations analysed: 24
 Successful automated experiments: 20
+Processor: X86 O3CPU
+Cores: 1
+Clock frequency: 3 GHz
+Workload: 128x128 Matrix Multiplication
+Parameters: Issue Width, ROB Entries, L2 Cache Size
 
 BASELINE PERFORMANCE
------------------------------------
-Execution time: 0.001232000 s
+----------------------------------------
+Total cycles: 3,700,824
 IPC: 2.369832
 CPI: 0.421971
 
 BEST CONFIGURATION
------------------------------------
-Name: Baseline
+----------------------------------------
+Name: issue8_rob256_l2_256KB
 Issue width: 8
-ROB entries: 192
+ROB entries: 256
 L2 cache: 256 KB
-Execution time: 0.001232000 s
-IPC: 2.369832
-CPI: 0.421971
-Speedup: 1.000000x
-Time improvement: 0.00%
+Total cycles: 3,700,547
+IPC: 2.370009
+CPI: 0.421939
+Speedup: 1.00007485x
+Cycle-count reduction: 0.007485%
 
 SLOWEST CONFIGURATION
------------------------------------
+----------------------------------------
 Name: issue4_rob64_l2_128KB
-Execution time: 0.008751000 s
+Issue width: 4
+ROB entries: 64
+L2 cache: 128 KB
+Total cycles: 26,279,232
 IPC: 0.333736
 
-AVERAGE EXECUTION TIME BY ROB CAPACITY
-ROB 64: 4.445167 ms
-ROB 128: 3.014500 ms
-ROB 192: 2.498167 ms
-ROB 256: 2.491000 ms
+TOP 5 CONFIGURATIONS
+----------------------------------------
+1. issue8_rob256_l2_256KB
+   Cycles: 3,700,547
+   IPC: 2.370009
+   Speedup: 1.00007485x
+2. Baseline
+   Cycles: 3,700,824
+   IPC: 2.369832
+   Speedup: 1.00000000x
+3. E2_Issue8_ROB128
+   Cycles: 4,122,230
+   IPC: 2.127569
+   Speedup: 0.89777232x
+4. issue8_rob128_l2_512KB
+   Cycles: 4,589,341
+   IPC: 1.911022
+   Speedup: 0.80639552x
+5. issue8_rob256_l2_512KB
+   Cycles: 4,593,139
+   IPC: 1.909441
+   Speedup: 0.80572872x
 
-AVERAGE EXECUTION TIME BY L2 CACHE SIZE
-L2 128 KB: 5.903625 ms
-L2 256 KB: 1.672375 ms
-L2 512 KB: 1.760625 ms
+PARAMETER-WISE ANALYSIS
+----------------------------------------
+
+1. ISSUE WIDTH IMPACT
+Issue width 4: 9,555,100.67 average cycles
+Issue width 8: 9,136,670.00 average cycles
+
+2. REORDER BUFFER SIZE IMPACT
+ROB 64: 13,349,456.00 average cycles
+ROB 128: 9,052,123.67 average cycles
+ROB 192: 7,501,967.67 average cycles
+ROB 256: 7,479,994.00 average cycles
+
+3. L2 CACHE SIZE IMPACT
+L2 128 KB: 17,728,510.88 average cycles
+L2 256 KB: 5,022,355.50 average cycles
+L2 512 KB: 5,286,789.62 average cycles
+
+METHODOLOGY AND INTERPRETATION
+----------------------------------------
+All configurations use the same 3 GHz clock frequency. Therefore, total CPU cycles are used for performance ranking. Cycle-count ratios are equivalent to execution-time ratios at a fixed clock frequency.
+
+Parameter-wise averages are calculated across the complete factorial experiment matrix. Each parameter value is averaged across the tested values of the other two parameters. These averages show overall trends and do not independently explain parameter interactions.
+
+The best configuration is ranked by total cycles. A very small difference from baseline should not be considered a meaningful performance improvement without repeated-run validation.
+
+END OF REPORT
