@@ -1,0 +1,58 @@
+GEM5 MICROARCHITECTURAL INTERACTION ANALYSIS
+=================================================================
+
+EXPERIMENT DESIGN
+---------------------------------------------
+Issue width: 4, 8
+ROB entries: 64, 128, 192, 256
+L2 cache: 128, 256, 512 KB
+Total configurations: 24
+
+Each pairwise interaction is calculated by averaging over the third parameter in the factorial design.
+
+ISSUE WIDTH VS ROB ENTRIES
+---------------------------------------------
+ROB_Entries=64, Issue_Width=4: 13,366,013.33 average cycles (n=3)
+ROB_Entries=64, Issue_Width=8: 13,332,898.67 average cycles (n=3)
+ROB_Entries=128, Issue_Width=4: 9,287,868.00 average cycles (n=3)
+ROB_Entries=128, Issue_Width=8: 8,816,379.33 average cycles (n=3)
+ROB_Entries=192, Issue_Width=4: 7,798,897.33 average cycles (n=3)
+ROB_Entries=192, Issue_Width=8: 7,205,038.00 average cycles (n=3)
+ROB_Entries=256, Issue_Width=4: 7,767,624.00 average cycles (n=3)
+ROB_Entries=256, Issue_Width=8: 7,192,364.00 average cycles (n=3)
+
+ISSUE WIDTH VS L2 CACHE
+---------------------------------------------
+L2_KB=128, Issue_Width=4: 17,819,006.75 average cycles (n=4)
+L2_KB=128, Issue_Width=8: 17,638,015.00 average cycles (n=4)
+L2_KB=256, Issue_Width=4: 5,452,514.00 average cycles (n=4)
+L2_KB=256, Issue_Width=8: 4,592,197.00 average cycles (n=4)
+L2_KB=512, Issue_Width=4: 5,393,781.25 average cycles (n=4)
+L2_KB=512, Issue_Width=8: 5,179,798.00 average cycles (n=4)
+
+ROB ENTRIES VS L2 CACHE
+---------------------------------------------
+L2_KB=128, ROB_Entries=64: 26,246,210.50 average cycles (n=2)
+L2_KB=128, ROB_Entries=128: 17,865,797.50 average cycles (n=2)
+L2_KB=128, ROB_Entries=192: 13,432,851.50 average cycles (n=2)
+L2_KB=128, ROB_Entries=256: 13,369,184.00 average cycles (n=2)
+L2_KB=256, ROB_Entries=64: 6,855,680.50 average cycles (n=2)
+L2_KB=256, ROB_Entries=128: 4,557,638.00 average cycles (n=2)
+L2_KB=256, ROB_Entries=192: 4,338,121.00 average cycles (n=2)
+L2_KB=256, ROB_Entries=256: 4,337,982.50 average cycles (n=2)
+L2_KB=512, ROB_Entries=64: 6,946,477.00 average cycles (n=2)
+L2_KB=512, ROB_Entries=128: 4,732,935.50 average cycles (n=2)
+L2_KB=512, ROB_Entries=192: 4,734,930.50 average cycles (n=2)
+L2_KB=512, ROB_Entries=256: 4,732,815.50 average cycles (n=2)
+
+HOW TO INTERPRET INTERACTION GRAPHS
+---------------------------------------------
+Each line represents one value of the series parameter. The plotted points are mean cycle counts averaged over the third parameter.
+
+Approximately parallel lines suggest that the effect of one parameter is relatively consistent across the tested values of the other parameter.
+
+Lines with noticeably different slopes or crossing patterns suggest an interaction. This means the effect of changing one parameter depends on the value of the other parameter.
+
+These graphs show marginal interaction trends. They do not independently establish the physical cause of observed performance differences.
+
+END OF INTERACTION ANALYSIS
