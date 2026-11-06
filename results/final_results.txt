@@ -1,0 +1,343 @@
+====================================================================================================
+GEM5 MICROARCHITECTURAL DESIGN SPACE EXPLORATION
+CONSOLIDATED EXPERIMENTAL RESULTS
+====================================================================================================
+Generated: 06 November 2026, 04:31 PM
+Project: Microarchitectural Design Space Exploration Using gem5
+Simulator: gem5 25.1.0.1
+Architecture: X86
+Processor model: O3CPU
+CPU cores: 1
+Clock frequency: 3 GHz
+Workload: 128 x 128 matrix multiplication
+Experimental parameters: Issue Width, ROB Entries, L2 Cache Size
+
+====================================================================================================
+1. EXPERIMENT OVERVIEW
+----------------------------------------------------------------------------------------------------
+
+Total factorial configurations: 24
+Experimental design: Balanced 2 x 4 x 3 factorial
+Issue Width values: 4, 8
+ROB Entries values: 64, 128, 192, 256
+L2 Cache values: 128 KB, 256 KB, 512 KB
+All configurations use the same workload and 3 GHz clock.
+Performance ranking is based on total CPU cycles.
+
+====================================================================================================
+2. BASELINE PERFORMANCE
+----------------------------------------------------------------------------------------------------
+
+Configuration: Baseline
+Issue Width: 8
+ROB Entries: 192
+L2 Cache: 256 KB
+Total Cycles: 3,700,824
+Simulated Time: 0.001232 seconds
+Instructions: 8,770,330
+IPC: 2.369832
+CPI: 0.421971
+
+====================================================================================================
+3. COMPLETE EXPERIMENTAL RESULTS
+----------------------------------------------------------------------------------------------------
+
+Rank  Configuration                   Issue    ROB   L2 KB          Cycles        IPC        CPI
+----------------------------------------------------------------------------------------------------
+1     issue8_rob256_l2_256KB              8    256     256       3,700,547   2.370009   0.421939
+2     Baseline                            8    192     256       3,700,824   2.369832   0.421971
+3     E2_Issue8_ROB128                    8    128     256       4,122,230   2.127569   0.470020
+4     issue8_rob128_l2_512KB              8    128     512       4,589,341   1.911022   0.523280
+5     issue8_rob256_l2_512KB              8    256     512       4,593,139   1.909441   0.523713
+6     issue8_rob192_l2_512KB              8    192     512       4,596,392   1.908090   0.524084
+7     issue4_rob256_l2_512KB              4    256     512       4,872,492   1.799968   0.555565
+8     issue4_rob192_l2_512KB              4    192     512       4,873,469   1.799607   0.555677
+9     issue4_rob128_l2_512KB              4    128     512       4,876,530   1.798478   0.556026
+10    E1_Issue4_ROB192                    4    192     256       4,975,418   1.762732   0.567301
+11    issue4_rob256_l2_256KB              4    256     256       4,975,418   1.762732   0.567301
+12    E3_Issue4_ROB128                    4    128     256       4,993,046   1.756509   0.569311
+13    issue8_rob64_l2_256KB               8     64     256       6,845,187   1.281240   0.780494
+14    issue4_rob64_l2_256KB               4     64     256       6,866,174   1.277324   0.782887
+15    issue8_rob64_l2_512KB               8     64     512       6,940,320   1.263678   0.791341
+16    issue4_rob64_l2_512KB               4     64     512       6,952,634   1.261440   0.792745
+17    issue8_rob256_l2_128KB              8    256     128      13,283,406   0.660247   1.514585
+18    issue8_rob192_l2_128KB              8    192     128      13,317,898   0.658537   1.518517
+19    issue4_rob256_l2_128KB              4    256     128      13,454,962   0.651829   1.534145
+20    issue4_rob192_l2_128KB              4    192     128      13,547,805   0.647362   1.544731
+21    issue8_rob128_l2_128KB              8    128     128      17,737,567   0.494449   2.022451
+22    issue4_rob128_l2_128KB              4    128     128      17,994,028   0.487402   2.051693
+23    issue8_rob64_l2_128KB               8     64     128      26,213,189   0.334577   2.988849
+24    issue4_rob64_l2_128KB               4     64     128      26,279,232   0.333736   2.996379
+
+====================================================================================================
+4. BEST AND WORST CONFIGURATIONS
+----------------------------------------------------------------------------------------------------
+
+BEST MEASURED CONFIGURATION
+Name: issue8_rob256_l2_256KB
+Issue Width: 8
+ROB Entries: 256
+L2 Cache: 256 KB
+Cycles: 3,700,547
+IPC: 2.370009
+CPI: 0.421939
+Speedup vs baseline: 1.00007485x
+Cycle-count change vs baseline: -0.007485%
+
+SLOWEST MEASURED CONFIGURATION
+Name: issue4_rob64_l2_128KB
+Issue Width: 4
+ROB Entries: 64
+L2 Cache: 128 KB
+Cycles: 26,279,232
+IPC: 0.333736
+
+====================================================================================================
+5. PARAMETER-WISE PERFORMANCE ANALYSIS
+----------------------------------------------------------------------------------------------------
+
+MICROARCHITECTURAL DESIGN SPACE EXPLORATION
+============================================================
+
+EXPERIMENT SUMMARY
+----------------------------------------
+Total configurations analysed: 24
+Successful automated experiments: 20
+Processor: X86 O3CPU
+Cores: 1
+Clock frequency: 3 GHz
+Workload: 128x128 Matrix Multiplication
+Parameters: Issue Width, ROB Entries, L2 Cache Size
+
+BASELINE PERFORMANCE
+----------------------------------------
+Total cycles: 3,700,824
+IPC: 2.369832
+CPI: 0.421971
+
+BEST CONFIGURATION
+----------------------------------------
+Name: issue8_rob256_l2_256KB
+Issue width: 8
+ROB entries: 256
+L2 cache: 256 KB
+Total cycles: 3,700,547
+IPC: 2.370009
+CPI: 0.421939
+Speedup: 1.00007485x
+Cycle-count reduction: 0.007485%
+
+SLOWEST CONFIGURATION
+----------------------------------------
+Name: issue4_rob64_l2_128KB
+Issue width: 4
+ROB entries: 64
+L2 cache: 128 KB
+Total cycles: 26,279,232
+IPC: 0.333736
+
+TOP 5 CONFIGURATIONS
+----------------------------------------
+1. issue8_rob256_l2_256KB
+   Cycles: 3,700,547
+   IPC: 2.370009
+   Speedup: 1.00007485x
+2. Baseline
+   Cycles: 3,700,824
+   IPC: 2.369832
+   Speedup: 1.00000000x
+3. E2_Issue8_ROB128
+   Cycles: 4,122,230
+   IPC: 2.127569
+   Speedup: 0.89777232x
+4. issue8_rob128_l2_512KB
+   Cycles: 4,589,341
+   IPC: 1.911022
+   Speedup: 0.80639552x
+5. issue8_rob256_l2_512KB
+   Cycles: 4,593,139
+   IPC: 1.909441
+   Speedup: 0.80572872x
+
+PARAMETER-WISE ANALYSIS
+----------------------------------------
+
+1. ISSUE WIDTH IMPACT
+Issue width 4: 9,555,100.67 average cycles
+Issue width 8: 9,136,670.00 average cycles
+
+2. REORDER BUFFER SIZE IMPACT
+ROB 64: 13,349,456.00 average cycles
+ROB 128: 9,052,123.67 average cycles
+ROB 192: 7,501,967.67 average cycles
+ROB 256: 7,479,994.00 average cycles
+
+3. L2 CACHE SIZE IMPACT
+L2 128 KB: 17,728,510.88 average cycles
+L2 256 KB: 5,022,355.50 average cycles
+L2 512 KB: 5,286,789.62 average cycles
+
+METHODOLOGY AND INTERPRETATION
+----------------------------------------
+All configurations use the same 3 GHz clock frequency. Therefore, total CPU cycles are used for performance ranking. Cycle-count ratios are equivalent to execution-time ratios at a fixed clock frequency.
+
+Parameter-wise averages are calculated across the complete factorial experiment matrix. Each parameter value is averaged across the tested values of the other two parameters. These averages show overall trends and do not independently explain parameter interactions.
+
+The best configuration is ranked by total cycles. A very small difference from baseline should not be considered a meaningful performance improvement without repeated-run validation.
+
+END OF REPORT
+
+====================================================================================================
+6. MICROARCHITECTURAL INTERACTION ANALYSIS
+----------------------------------------------------------------------------------------------------
+
+Total interaction comparisons: 26
+The following values are mean cycle counts for each parameter pairing.
+They are averaged over the third parameter, as indicated.
+
+L2_KB_vs_Issue_Width (6 comparisons)
+--------------------------------------------------------------------------------
+X Parameter           X Value Series Parameter     Series Value        Mean Cycles     N
+L2_KB                     128 Issue_Width                     4      17,819,006.75     4
+L2_KB                     128 Issue_Width                     8      17,638,015.00     4
+L2_KB                     256 Issue_Width                     4       5,452,514.00     4
+L2_KB                     256 Issue_Width                     8       4,592,197.00     4
+L2_KB                     512 Issue_Width                     4       5,393,781.25     4
+L2_KB                     512 Issue_Width                     8       5,179,798.00     4
+
+L2_KB_vs_ROB_Entries (12 comparisons)
+--------------------------------------------------------------------------------
+X Parameter           X Value Series Parameter     Series Value        Mean Cycles     N
+L2_KB                     128 ROB_Entries                    64      26,246,210.50     2
+L2_KB                     128 ROB_Entries                   128      17,865,797.50     2
+L2_KB                     128 ROB_Entries                   192      13,432,851.50     2
+L2_KB                     128 ROB_Entries                   256      13,369,184.00     2
+L2_KB                     256 ROB_Entries                    64       6,855,680.50     2
+L2_KB                     256 ROB_Entries                   128       4,557,638.00     2
+L2_KB                     256 ROB_Entries                   192       4,338,121.00     2
+L2_KB                     256 ROB_Entries                   256       4,337,982.50     2
+L2_KB                     512 ROB_Entries                    64       6,946,477.00     2
+L2_KB                     512 ROB_Entries                   128       4,732,935.50     2
+L2_KB                     512 ROB_Entries                   192       4,734,930.50     2
+L2_KB                     512 ROB_Entries                   256       4,732,815.50     2
+
+ROB_Entries_vs_Issue_Width (8 comparisons)
+--------------------------------------------------------------------------------
+X Parameter           X Value Series Parameter     Series Value        Mean Cycles     N
+ROB_Entries                64 Issue_Width                     4      13,366,013.33     3
+ROB_Entries                64 Issue_Width                     8      13,332,898.67     3
+ROB_Entries               128 Issue_Width                     4       9,287,868.00     3
+ROB_Entries               128 Issue_Width                     8       8,816,379.33     3
+ROB_Entries               192 Issue_Width                     4       7,798,897.33     3
+ROB_Entries               192 Issue_Width                     8       7,205,038.00     3
+ROB_Entries               256 Issue_Width                     4       7,767,624.00     3
+ROB_Entries               256 Issue_Width                     8       7,192,364.00     3
+
+====================================================================================================
+7. FACTORIAL STATISTICAL ANALYSIS
+----------------------------------------------------------------------------------------------------
+
+GEM5 FACTORIAL STATISTICAL ANALYSIS
+=================================================================
+
+EXPERIMENT DESIGN
+---------------------------------------------
+Design: Balanced 2 x 4 x 3 factorial
+Issue Width: 4, 8
+ROB Entries: 64, 128, 192, 256
+L2 Cache: 128, 256, 512 KB
+Total configurations: 24
+Grand mean cycles: 9,345,885.33
+
+FACTORIAL EFFECT CONTRIBUTIONS
+---------------------------------------------
+L2 Cache (KB): 77.9485% of total variation
+ROB Entries: 12.7507% of total variation
+ROB Entries x L2 Cache (KB): 9.0975% of total variation
+Issue Width: 0.0971% of total variation
+Issue Width x L2 Cache (KB): 0.0542% of total variation
+Issue Width x ROB Entries: 0.0286% of total variation
+Issue Width x ROB Entries x L2 Cache (KB): 0.0233% of total variation
+
+Total contribution: 100.0000%
+
+STATISTICAL INTERPRETATION
+---------------------------------------------
+The largest contribution in this dataset is from L2 Cache (KB), accounting for 77.9485% of total cycle variation.
+
+STATISTICAL LIMITATIONS
+---------------------------------------------
+Each factorial configuration was simulated once.
+The complete factorial model has no residual degrees of freedom.
+Therefore, conventional residual-based significance tests and p-values cannot be independently estimated.
+Effect contributions describe variation in this experimental dataset and do not establish causality.
+
+====================================================================================================
+8. REPEAT-RUN VALIDATION
+----------------------------------------------------------------------------------------------------
+
+Baseline and best configuration were each executed three times.
+
+BASELINE — all three runs produced identical results:
+simTicks: 1,232,374,059
+Instructions: 8,770,330
+Total cycles: 3,700,824
+CPI: 0.421971
+IPC: 2.369832
+
+BEST CONFIGURATION — all three runs produced identical results:
+simTicks: 1,232,281,818
+Instructions: 8,770,330
+Total cycles: 3,700,547
+CPI: 0.421939
+IPC: 2.370009
+
+The repeated runs were deterministic in this environment.
+
+====================================================================================================
+9. GENERATED RESULT FILES
+----------------------------------------------------------------------------------------------------
+
+CSV data:
+  - results/csv/all_experiments.csv
+  - results/csv/automated_results.csv
+  - results/csv/baseline.csv
+  - results/csv/experiment_plan.csv
+  - results/csv/experiment_status.csv
+  - results/csv/interaction_analysis.csv
+  - results/csv/master_results.csv
+  - results/csv/statistical_analysis.csv
+
+Graphs:
+  - results/graphs/execution_time_comparison.png
+  - results/graphs/factorial_effect_contributions.png
+  - results/graphs/interaction_issue_l2.png
+  - results/graphs/interaction_issue_rob.png
+  - results/graphs/interaction_rob_l2.png
+  - results/graphs/ipc_comparison.png
+  - results/graphs/issue_width_impact.png
+  - results/graphs/l2_cache_impact.png
+  - results/graphs/rob_impact.png
+
+Analysis scripts:
+  - automation/analyze_interactions.py
+  - automation/analyze_results.py
+  - automation/generate_configs.py
+  - automation/generate_final_results.py
+  - automation/run_experiments.py
+  - automation/statistical_analysis.py
+
+====================================================================================================
+10. OVERALL CONCLUSION
+----------------------------------------------------------------------------------------------------
+
+A 24-configuration factorial experiment was conducted using gem5 to explore Issue Width, Reorder Buffer size, and L2 Cache size.
+The lowest cycle count was observed for issue8_rob256_l2_256KB, with 3,700,547 cycles.
+Compared with the baseline, the measured cycle reduction was 0.007485%.
+The improvement over baseline is extremely small and should not be interpreted as a substantial performance gain.
+Factorial effect decomposition indicates that L2 Cache size accounted for the largest share of cycle variation in this dataset. These contribution percentages are descriptive, not proof of causality.
+The experiment demonstrates an automated workflow for generating configurations, executing gem5 simulations, collecting statistics, ranking configurations, and analysing parameter interactions.
+
+====================================================================================================
+END OF CONSOLIDATED RESULTS
+====================================================================================================
