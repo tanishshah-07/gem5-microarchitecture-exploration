@@ -2,7 +2,7 @@
 GEM5 MICROARCHITECTURAL DESIGN SPACE EXPLORATION
 CONSOLIDATED EXPERIMENTAL RESULTS
 ====================================================================================================
-Generated: 06 November 2026, 04:31 PM
+Generated: 06 November 2026, 04:41 PM
 Project: Microarchitectural Design Space Exploration Using gem5
 Simulator: gem5 25.1.0.1
 Architecture: X86
@@ -324,6 +324,7 @@ Analysis scripts:
   - automation/analyze_results.py
   - automation/generate_configs.py
   - automation/generate_final_results.py
+  - automation/project_demo.py
   - automation/run_experiments.py
   - automation/statistical_analysis.py
 
