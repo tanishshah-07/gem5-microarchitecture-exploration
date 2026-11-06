@@ -186,7 +186,7 @@ def generate_graph(
         row["Series_Value"] for row in results
     })
 
-    plt.figure(figsize=(9, 6))
+    plt.figure(figsize=(11, 7))
 
     for series_value in series_values:
 
@@ -213,21 +213,33 @@ def generate_graph(
             x_values,
             y_values,
             marker="o",
-            linewidth=2,
+            markersize=9,
+            linewidth=2.5,
             label=f"{series_parameter} = {series_value}"
         )
 
-    plt.xlabel(x_parameter.replace("_", " "))
-    plt.ylabel("Average Total CPU Cycles")
-    plt.title(title)
+    ax = plt.gca()
+    ax.yaxis.set_major_formatter(
+        plt.FuncFormatter(lambda y, _: f"{y / 1_000_000:.1f}M")
+    )
 
-    plt.legend()
-    plt.grid(True, alpha=0.3)
+    plt.xlabel(x_parameter.replace("_", " "), fontsize=11)
+    plt.ylabel("Average Total CPU Cycles (Millions)", fontsize=11)
+    plt.title(title, fontsize=15, fontweight="bold", pad=15)
+
+    plt.legend(
+        title=series_parameter.replace("_", " "),
+        loc="best",
+        frameon=True
+    )
+
+    plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
 
     plt.savefig(
         os.path.join(GRAPH_DIR, filename),
-        dpi=300
+        dpi=300,
+        bbox_inches="tight"
     )
 
     plt.close()

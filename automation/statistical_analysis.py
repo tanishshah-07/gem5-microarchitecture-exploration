@@ -335,23 +335,40 @@ values = [
 
 order = np.argsort(values)
 
-plt.figure(figsize=(12, 7))
+plt.figure(figsize=(13, 8))
 
-plt.barh(
+bars = plt.barh(
     [labels[i] for i in order],
     [values[i] for i in order]
 )
 
+ax = plt.gca()
+
+for bar, value in zip(bars, [values[i] for i in order]):
+    ax.text(
+        bar.get_width() + 0.3,
+        bar.get_y() + bar.get_height() / 2,
+        f"{value:.3f}%",
+        va="center",
+        fontsize=9
+    )
+
 plt.xlabel(
-    "Contribution to Total Cycle Variation (%)"
+    "Contribution to Total Cycle Variation (%)",
+    fontsize=11
 )
 
-plt.ylabel("Factorial Effect")
+plt.ylabel("Factorial Effect", fontsize=11)
 
 plt.title(
-    "Microarchitectural Factorial Effect Contributions"
+    "Microarchitectural Factorial Effect Contributions",
+    fontsize=15,
+    fontweight="bold",
+    pad=15
 )
 
+plt.grid(axis="x", linestyle="--", alpha=0.3)
+plt.xlim(0, max(values) * 1.12)
 plt.tight_layout()
 
 plt.savefig(

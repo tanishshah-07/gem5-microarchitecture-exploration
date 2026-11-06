@@ -279,208 +279,135 @@ def generate_graphs(experiments):
     ]
 
     # --------------------------------------------------------
+
+    # --------------------------------------------------------
+
+    # --------------------------------------------------------
+
+    # --------------------------------------------------------
     # GRAPH 1: EXECUTION CYCLE COMPARISON
     # --------------------------------------------------------
 
-    plt.figure(figsize=(17, 8))
+    plt.figure(figsize=(13, 10))
 
-    plt.bar(range(len(names)), cycles)
+    plt.barh(names[::-1], cycles[::-1])
 
-    plt.xticks(
-        range(len(names)),
-        names,
-        rotation=75,
-        ha="right",
-        fontsize=8
-    )
+    plt.xlabel("Total CPU Cycles")
+    plt.ylabel("Configuration")
+    plt.title("Execution Cycle Comparison Across 24 Configurations",
+              fontsize=15, fontweight="bold")
 
-    plt.ylabel("Total CPU Cycles")
-    plt.xlabel("Configuration")
-
-    plt.title(
-        "Execution Cycle Comparison Across 24 Configurations"
-    )
-
+    plt.grid(axis="x", linestyle="--", alpha=0.3)
     plt.tight_layout()
-
-    plt.savefig(
-        os.path.join(
-            GRAPH_DIR,
-            "execution_time_comparison.png"
-        ),
-        dpi=300
-    )
-
+    plt.savefig(os.path.join(GRAPH_DIR, "execution_time_comparison.png"),
+                dpi=300, bbox_inches="tight")
     plt.close()
 
     # --------------------------------------------------------
     # GRAPH 2: IPC COMPARISON
     # --------------------------------------------------------
 
-    plt.figure(figsize=(17, 8))
+    ipc_sorted = sorted(zip(ipc_values, names), reverse=True)
 
-    plt.bar(range(len(names)), ipc_values)
-
-    plt.xticks(
-        range(len(names)),
-        names,
-        rotation=75,
-        ha="right",
-        fontsize=8
+    plt.figure(figsize=(13, 10))
+    plt.barh(
+        [item[1] for item in ipc_sorted[::-1]],
+        [item[0] for item in ipc_sorted[::-1]]
     )
 
-    plt.ylabel("Instructions Per Cycle (IPC)")
-    plt.xlabel("Configuration")
+    plt.xlabel("Instructions Per Cycle (IPC)")
+    plt.ylabel("Configuration")
+    plt.title("IPC Comparison Across 24 Configurations",
+              fontsize=15, fontweight="bold")
 
-    plt.title(
-        "IPC Comparison Across 24 Configurations"
-    )
-
+    plt.grid(axis="x", linestyle="--", alpha=0.3)
     plt.tight_layout()
-
-    plt.savefig(
-        os.path.join(
-            GRAPH_DIR,
-            "ipc_comparison.png"
-        ),
-        dpi=300
-    )
-
+    plt.savefig(os.path.join(GRAPH_DIR, "ipc_comparison.png"),
+                dpi=300, bbox_inches="tight")
     plt.close()
 
     # --------------------------------------------------------
     # GRAPH 3: ISSUE WIDTH IMPACT
     # --------------------------------------------------------
 
-    issue_averages = calculate_group_averages(
-        experiments,
-        "Issue_Width"
-    )
-
+    issue_averages = calculate_group_averages(experiments, "Issue_Width")
     issue_sizes = sorted(issue_averages.keys())
+    issue_cycles = [issue_averages[size] for size in issue_sizes]
 
-    issue_cycles = [
-        issue_averages[size]
-        for size in issue_sizes
-    ]
+    plt.figure(figsize=(9, 6))
+    plt.plot(issue_sizes, issue_cycles, marker="o", linewidth=2.5,
+             markersize=8)
 
-    plt.figure(figsize=(8, 6))
-
-    plt.plot(
-        issue_sizes,
-        issue_cycles,
-        marker="o"
-    )
+    for x, y in zip(issue_sizes, issue_cycles):
+        plt.annotate(f"{y:,.0f}", (x, y), xytext=(0, 9),
+                     textcoords="offset points", ha="center", fontsize=9)
 
     plt.xlabel("Issue Width")
     plt.ylabel("Average Total CPU Cycles")
-
-    plt.title(
-        "Impact of Issue Width on Average Execution Cycles"
-    )
-
-    plt.grid(True)
+    plt.title("Impact of Issue Width on Execution Cycles",
+              fontsize=14, fontweight="bold")
+    plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
-
-    plt.savefig(
-        os.path.join(
-            GRAPH_DIR,
-            "issue_width_impact.png"
-        ),
-        dpi=300
-    )
-
+    plt.savefig(os.path.join(GRAPH_DIR, "issue_width_impact.png"),
+                dpi=300, bbox_inches="tight")
     plt.close()
 
     # --------------------------------------------------------
     # GRAPH 4: ROB SIZE IMPACT
     # --------------------------------------------------------
 
-    rob_averages = calculate_group_averages(
-        experiments,
-        "ROB_Entries"
-    )
-
+    rob_averages = calculate_group_averages(experiments, "ROB_Entries")
     rob_sizes = sorted(rob_averages.keys())
+    rob_cycles = [rob_averages[size] for size in rob_sizes]
 
-    rob_cycles = [
-        rob_averages[size]
-        for size in rob_sizes
-    ]
+    plt.figure(figsize=(9, 6))
+    plt.plot(rob_sizes, rob_cycles, marker="o", linewidth=2.5,
+             markersize=8)
 
-    plt.figure(figsize=(8, 6))
-
-    plt.plot(
-        rob_sizes,
-        rob_cycles,
-        marker="o"
-    )
+    for x, y in zip(rob_sizes, rob_cycles):
+        plt.annotate(f"{y:,.0f}", (x, y), xytext=(0, 9),
+                     textcoords="offset points", ha="center", fontsize=9)
 
     plt.xlabel("Reorder Buffer Size (Entries)")
     plt.ylabel("Average Total CPU Cycles")
-
-    plt.title(
-        "Impact of ROB Size on Average Execution Cycles"
-    )
-
-    plt.grid(True)
+    plt.title("Impact of ROB Size on Execution Cycles",
+              fontsize=14, fontweight="bold")
+    plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
-
-    plt.savefig(
-        os.path.join(
-            GRAPH_DIR,
-            "rob_impact.png"
-        ),
-        dpi=300
-    )
-
+    plt.savefig(os.path.join(GRAPH_DIR, "rob_impact.png"),
+                dpi=300, bbox_inches="tight")
     plt.close()
 
     # --------------------------------------------------------
     # GRAPH 5: L2 CACHE SIZE IMPACT
     # --------------------------------------------------------
 
-    l2_averages = calculate_group_averages(
-        experiments,
-        "L2_KB"
-    )
-
+    l2_averages = calculate_group_averages(experiments, "L2_KB")
     l2_sizes = sorted(l2_averages.keys())
+    l2_cycles = [l2_averages[size] for size in l2_sizes]
 
-    l2_cycles = [
-        l2_averages[size]
-        for size in l2_sizes
-    ]
+    plt.figure(figsize=(9, 6))
+    plt.plot(l2_sizes, l2_cycles, marker="o", linewidth=2.5,
+             markersize=8)
 
-    plt.figure(figsize=(8, 6))
-
-    plt.plot(
-        l2_sizes,
-        l2_cycles,
-        marker="o"
-    )
+    for x, y in zip(l2_sizes, l2_cycles):
+        plt.annotate(f"{y:,.0f}", (x, y), xytext=(0, 9),
+                     textcoords="offset points", ha="center", fontsize=9)
 
     plt.xlabel("L2 Cache Size (KB)")
     plt.ylabel("Average Total CPU Cycles")
-
-    plt.title(
-        "Impact of L2 Cache Size on Average Execution Cycles"
-    )
-
-    plt.grid(True)
+    plt.title("Impact of L2 Cache Size on Execution Cycles",
+              fontsize=14, fontweight="bold")
+    plt.grid(True, linestyle="--", alpha=0.3)
     plt.tight_layout()
-
-    plt.savefig(
-        os.path.join(
-            GRAPH_DIR,
-            "l2_cache_impact.png"
-        ),
-        dpi=300
-    )
-
+    plt.savefig(os.path.join(GRAPH_DIR, "l2_cache_impact.png"),
+                dpi=300, bbox_inches="tight")
     plt.close()
 
     print("Five graphs generated successfully.")
+
+
+
 
 
 # ============================================================
