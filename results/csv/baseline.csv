@@ -1,0 +1,2 @@
+Configuration,Architecture,CPU,Workload,Clock,Fetch_Width,Decode_Width,Rename_Width,Dispatch_Width,Issue_Width,Writeback_Width,Commit_Width,ROB_Entries,L1I_KB,L1D_KB,L2_KB,Memory,Simulated_Time_s,Total_Cycles,Simulated_Instructions,IPC,CPI,L1I_Accesses,L1I_Misses,L1I_Miss_Rate,L1D_Accesses,L1D_Misses,L1D_Miss_Rate,L2_Accesses,L2_Misses,L2_Miss_Rate,Branch_Mispredictions
+Baseline,X86,O3CPU,Matrix_128x128,3GHz,8,8,8,8,8,8,8,192,32,32,256,DDR4-2400_2GiB,0.001232,3700824,8770330,2.369832,0.421971,65286,1208,0.018503,3278928,2185802,0.666621,1089916,10747,0.009860,9808
