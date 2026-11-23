@@ -689,6 +689,13 @@ elif page == "Repository":
         "https://github.com/tanishshah-07/gem5-microarchitecture-exploration"
     )
 
+    st.subheader("Team & Contributors")
+    st.markdown("""
+    - **Tanish Shah**: [@tanishshah-07](https://github.com/tanishshah-07)
+    - **Mohammad Ali (Member 2)**: [@Ray000i](https://github.com/Ray000i)
+    - **Team Member 3**
+    """)
+
     st.subheader("Repository structure")
     st.code(
         "gem5-microarchitecture-exploration/\n"

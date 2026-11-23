@@ -14,8 +14,8 @@ using the gem5 simulator.
 - 128 x 128 Matrix Multiplication
 
 ## Team
-- Tanish Shah
-- Team Member 2
+- [Tanish Shah](https://github.com/tanishshah-07)
+- [Mohammad Ali](https://github.com/Ray000i) (Member 2)
 - Team Member 3
 
 ## Technologies
